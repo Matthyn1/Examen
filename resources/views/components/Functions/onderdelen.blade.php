@@ -48,10 +48,10 @@
         <tr>
             <form action="{{ route('parts.store') }}" method="POST">
                 @csrf
-                <td><input type="text" name="name" class="form-control" placeholder="Name"></td>
-                <td><input type="text" name="description" class="form-control" placeholder="Description"></td>
-                <td><input type="number" name="PricePerKg" class="form-control" placeholder="Price per kg"></td>
-                <td><input type="number" name="StashKg" class="form-control" placeholder="Stash Kg"> </td>
+                <td><input type="text" name="name" class="form-control" placeholder="Naam"></td>
+                <td><input type="text" name="description" class="form-control" placeholder="Omschrijving"></td>
+                <td><input type="number" name="PricePerKg" class="form-control" placeholder="Prijs per kilo"></td>
+                <td><input type="number" name="StashKg" class="form-control" placeholder="Opslag in kilo"> </td>
                 <td>
                     <button type="submit">Toevoegen</button>
                     <a href="{{ route('parts.store') }}">Annuleren</a>
