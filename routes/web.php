@@ -50,6 +50,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/parts/{id}', [PartController::class, 'update'])->name('parts.update');
     Route::delete('/parts/{id}', [PartController::class, 'destroy'])->name('parts.destroy');
     Route::post('/parts', [PartController::class, 'store'])->name('parts.store');
+    Route::get('parts/export', [PartController::class, 'export']);
 
     Route::get('/rapportage', function () {return view('components.functions.rapportage');})->name('rapportage');
 });

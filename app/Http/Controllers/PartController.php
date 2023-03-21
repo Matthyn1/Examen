@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Parts;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Response;
 
 class PartController extends Controller
 {
@@ -61,6 +63,31 @@ class PartController extends Controller
         $part->save();
 
         return redirect()->route('parts.index')->with('success', 'Part created successfully');
+    }
+
+    public function export()
+    {
+        $parts = DB::table('parts')->select('id', 'name', 'description', 'PricePerKg', 'StashKg')->get();
+
+        $filename = "parts.csv";
+        $handle = fopen($filename, 'w+');
+
+        // Add the CSV headers
+        fputcsv($handle, ['ID', 'Name', 'Description', 'PricePerKG', 'StashKg']);
+
+        // Add the CSV rows
+        foreach($parts as $part) {
+            fputcsv($handle, [$part->id, $part->name, $part->description, $part->PricePerKg, $part->StashKg]);
+        }
+
+        // Close the file handle
+        fclose($handle);
+
+        // Return the CSV file as a download
+        $headers = [
+            'Content-Type' => 'text/csv',
+        ];
+        return response()->download($filename, 'parts.csv', $headers);
     }
 
 }

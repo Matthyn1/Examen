@@ -60,12 +60,8 @@
         </tbody>
     </table>
 
-        <form method="POST" action="/onderdelen">
-            @csrf
         <label for="afdrukken">Afdrukken:</label>
-        <input type="checkbox" id="afdrukken" name="afdrukken" value="1">
-            <button type="submit">Verzenden</button>
-        </form>
+    <a href="{{ url('parts/export') }}">Exporteren naar Excel</a>
 
     </div>
 </x-app-layout>
