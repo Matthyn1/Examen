@@ -16,15 +16,31 @@ class PartController extends Controller
         return view('components.functions.onderdelen', compact('parts'));
     }
 
-    public function destroy(Parts $part)
+    public function destroy($id)
     {
+        $part = Parts::findOrFail($id);
         $part->delete();
 
-        return redirect()->route('parts.index')->with('success', 'Part deleted successfully');
+        return redirect()->route('parts.index')->with('success', 'Part deleted successfully.');
     }
-    public function update(Request $request, Parts $part)
+    public function update(Request $request, $id)
     {
-        $part->update($request->all());
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'description' => '',
+            'PricePerKg' => 'required|numeric|min:0',
+            'StashKg' => 'required|numeric|min:0',
+        ]);
+
+        $part = Parts::findOrFail($id);
+
+        $part->name = $validatedData['name'];
+        $part->description = $validatedData['description'];
+        $part->PricePerKg = $validatedData['PricePerKg'];
+        $part->StashKg = $validatedData['StashKg'];
+
+        $part->save();
+
 
         return redirect()->route('parts.index');
 

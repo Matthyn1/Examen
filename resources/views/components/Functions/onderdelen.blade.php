@@ -22,7 +22,7 @@
         <tbody>
         @foreach ($parts as $part)
             <tr>
-                <form method="POST" action="{{ route('parts.update', $part->id) }}">
+                <form method="POST" action="/parts/{{ $part->id }}">
                     @csrf
                     @method('PUT')
                     <td><input type="text" name="name" value="{{ $part->name }}"></td>
@@ -30,17 +30,17 @@
                     <td><input type="text" name="PricePerKg" value="{{ $part->PricePerKg }}"></td>
                     <td><input type="text" name="StashKg" value="{{ $part->StashKg }}"></td>
                     <td>
-                        <button type="submit">Save</button>
+                        <button type="submit">update</button>
+                    </td>
+                    <td>
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Delete</button>
                     </td>
                     <td>
                         <a href="{{ route('parts.index') }}">Cancel</a>
                     </td>
-                </form>
-                <form action="{{ route('parts.destroy', $part->id) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                </form>
+
+
         @endforeach
         <tr>
             <form action="{{ route('parts.store') }}" method="POST">
