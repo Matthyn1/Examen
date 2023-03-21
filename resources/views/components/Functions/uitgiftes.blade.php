@@ -8,4 +8,5 @@
     </x-slot>
     Dit zijn de uitgiftes
 
+
 </x-app-layout>

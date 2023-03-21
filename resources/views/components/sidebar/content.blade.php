@@ -48,23 +48,23 @@
         Dummy Links
     </div>
 {{--    With @can we are defining what roles can see what buttons/functions--}}
-    @can('admin', 'appbeheer')
+    @canany(['admin', 'appbeheer'])
     <x-sidebar.link             title="Onderhoud"
                                 href="{{ route('buttons.text') }}"
                                 :active="request()->routeIs('buttons.text')"  />
     @endcan
-@can('inname', 'appbeheer')
+@canany(['inname', 'appbeheer'])
     <x-sidebar.link             title="Inname"
                                 href="{{ route('buttons.icon') }}"
                                 :active="request()->routeIs('buttons.icon')"  />
     @endcan
-    @can('verwerking', 'appbeheer')
+    @canany(['verwerking', 'appbeheer'])
     <x-sidebar.link             title="Verwerking"
                                 href="{{ route('buttons.text-icon') }}"
                                 :active="request()->routeIs('buttons.text-icon')"  />
     @endcan
 
-        @can('uitgifte', 'appbeheer')
+        @canany(['uitgifte', 'appbeheer'])
     <x-sidebar.link             title="Uitgifte"
                                 href="{{ route('uitgiftes') }}"
                                 :active="request()->routeIs('uitgiftes')"  />
