@@ -39,5 +39,10 @@ require __DIR__ . '/auth.php';
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
-
+    Route::get('/uitgiftes', function () {return view('components.functions.uitgiftes');})->name('uitgiftes');
+    Route::get('/onderdelen', function () {return view('components.functions.onderdelen');})->name('onderdelen');
+    Route::get('/rapportage', function () {return view('components.functions.rapportage');})->name('rapportage');
 });
+
+//Routes voor als persoon Admin is
+Route::middleware(['can:admin'])->group(function(){ });

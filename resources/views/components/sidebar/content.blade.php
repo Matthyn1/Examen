@@ -66,14 +66,14 @@
 
         @can('uitgifte', 'appbeheer')
     <x-sidebar.link             title="Uitgifte"
-                                href="{{ route('buttons.text-icon') }}"
-                                :active="request()->routeIs('buttons.text')"  />
+                                href="{{ route('uitgiftes') }}"
+                                :active="request()->routeIs('uitgiftes')"  />
         @endcan
 
             @cannot('admin')
     <x-sidebar.link             title="Rapportage"
-                                href="{{ route('buttons.text-icon') }}"
-                                :active="request()->routeIs('buttons.icon')"  />
+                                href="{{ route('rapportage') }}"
+                                :active="request()->routeIs('rapportage')"  />
             @endcan
     @can('admin')
     <x-sidebar.link             title="Gebruikers-Beheer"
