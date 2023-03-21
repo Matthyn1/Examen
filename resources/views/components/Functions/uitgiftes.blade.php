@@ -13,6 +13,7 @@
                 <th>Datum</th>
                 <th>Gewicht</th>
                 <th>Prijs</th>
+                <th>Actie</th>
             </tr>
             </thead>
             <tbody>
@@ -33,20 +34,20 @@
                                 @endforeach
                             </select></td>
                         <td><input type="text" name="Datum" value="{{ $issue->Time }}"></td>
-                        <td><input type="text" name="PricePerKg" value="{{ $issue->WeightKg }}"></td>
-                        <td><input type="text" name="StashKg" value="{{ $issue->Price }}"></td>
+                        <td><input type="text" name="PricePerKg" value="{{ $issue->WeightKg }} Kg"></td>
+                        <td><input type="text" name="StashKg" value="€ {{ $issue->Price }}"></td>
                         <td>
-                            <button type="submit">update</button>
+                            <button type="submit">Bijwerken</button>
                         </td>
                         <td>
-                            <a href="{{ route('issues.index') }}">Cancel</a>
+                            <a href="{{ route('issues.index') }}">Annuleren</a>
                         </td>
                     </form>
                     <form action="{{ route('issues.destroy', $issue->id) }}" method="POST">
                         @csrf
                         <td>
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <button type="submit" class="btn btn-danger">Verwijderen</button>
                         <td>
                     </form>
             @endforeach
@@ -68,7 +69,7 @@
                     <td><input type="number" name="Weight" class="form-control" placeholder="Gewicht"></td>
                     <td><input type="number" name="Price" class="form-control" placeholder="Prijs"> </td>
                     <td>
-                        <button type="submit">Save</button>
+                        <button type="submit">Toevoegen</button>
                     </td>
                 </form>
             </tbody>

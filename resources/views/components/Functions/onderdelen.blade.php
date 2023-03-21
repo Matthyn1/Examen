@@ -12,11 +12,11 @@
     <table>
         <thead>
         <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Price per kg</th>
-            <th>Stash kg</th>
-            <th>Action</th>
+            <th>Naam</th>
+            <th>Beschrijving</th>
+            <th>Prijs per kg</th>
+            <th>Opslag kg</th>
+            <th>Actie</th>
         </tr>
         </thead>
         <tbody>
@@ -27,20 +27,20 @@
                     @method('PUT')
                     <td><input type="text" name="name" value="{{ $part->name }}"></td>
                     <td><input type="text" name="description" value="{{ $part->description }}"></td>
-                    <td><input type="text" name="PricePerKg" value="{{ $part->PricePerKg }}"></td>
-                    <td><input type="text" name="StashKg" value="{{ $part->StashKg }}"></td>
+                    <td><input type="text" name="PricePerKg" value="€ {{ $part->PricePerKg }}"></td>
+                    <td><input type="text" name="StashKg" value="{{ $part->StashKg }} Kg"></td>
                     <td>
-                        <button type="submit">update</button>
+                        <button type="submit">Bewerken</button>
                     </td>
                     <td>
-                        <a href="{{ route('parts.index') }}">Cancel</a>
+                        <a href="{{ route('parts.index') }}">Annuleren</a>
                     </td>
                 </form>
                 <form action="{{ route('parts.destroy', $part->id) }}" method="POST">
                     @csrf
                     <td>
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-danger">Verwijderen</button>
                     <td>
                 </form>
 
@@ -53,8 +53,8 @@
                 <td><input type="number" name="PricePerKg" class="form-control" placeholder="Price per kg"></td>
                 <td><input type="number" name="StashKg" class="form-control" placeholder="Stash Kg"> </td>
                 <td>
-                    <button type="submit">Save</button>
-                    <a href="{{ route('parts.store') }}">Cancel</a>
+                    <button type="submit">Toevoegen</button>
+                    <a href="{{ route('parts.store') }}">Annuleren</a>
                 </td>
             </form>
         </tbody>
