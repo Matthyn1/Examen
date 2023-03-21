@@ -21,7 +21,11 @@
         <input type="text" id="wijzigen" name="wijzigen">
 
         <label for="verwijderen">Onderdeel verwijderen:</label>
-        <input type="text" id="verwijderen" name="verwijderen">
+        <select id="verwijderen" name="verwijderen">
+            @foreach($parts as $part)
+                <option value="{{ $part->id }}">{{ $part->name }}</option>
+            @endforeach
+        </select>
 
         <label for="afdrukken">Afdrukken:</label>
         <input type="checkbox" id="afdrukken" name="afdrukken" value="1">
