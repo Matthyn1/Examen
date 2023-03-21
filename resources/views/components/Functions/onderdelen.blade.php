@@ -33,13 +33,16 @@
                         <button type="submit">update</button>
                     </td>
                     <td>
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                    </td>
-                    <td>
                         <a href="{{ route('parts.index') }}">Cancel</a>
                     </td>
-
+                </form>
+                <form action="{{ route('parts.destroy', $part->id) }}" method="POST">
+                    @csrf
+                    <td>
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    <td>
+                </form>
 
         @endforeach
         <tr>

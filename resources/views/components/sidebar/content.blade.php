@@ -49,7 +49,7 @@
     </div>
 {{--    With @can we are defining what roles can see what buttons/functions--}}
     @canany(['admin', 'appbeheer'])
-    <x-sidebar.link             title="Onderhoud"
+    <x-sidebar.link             title="Onderdelen"
                                 href="{{ route('parts.index') }}"
                                 :active="request()->routeIs('parts.index')"  />
     @endcan
