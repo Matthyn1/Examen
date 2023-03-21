@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('device_ID');
             $table->integer('percentage')->nullable();
 
-            $table->foreign('part_ID')->references('id')->on('part')->onDelete('cascade');
+            $table->foreign('part_ID')->references('id')->on('parts')->onDelete('cascade');
             $table->foreign('device_ID')->references('id')->on('device')->onDelete('cascade');
         });
     }

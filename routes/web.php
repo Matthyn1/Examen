@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,7 +41,12 @@ require __DIR__ . '/auth.php';
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
     Route::get('/uitgiftes', function () {return view('components.functions.uitgiftes');})->name('uitgiftes');
-    Route::get('/onderdelen', function () {return view('components.functions.onderdelen');})->name('onderdelen');
+
+    Route::get('/parts', [PartController::class, 'index'])->name('parts.index');
+    Route::put('/parts/{id}', [PartController::class, 'update'])->name('parts.update');
+    Route::delete('/parts/{id}', [PartController::class, 'destroy'])->name('parts.destroy');
+    Route::post('/parts', [PartController::class, 'store'])->name('parts.store');
+
     Route::get('/rapportage', function () {return view('components.functions.rapportage');})->name('rapportage');
 });
 

@@ -22,7 +22,7 @@ return new class extends Migration
             $table->float('StashKg');
 
             $table->foreign('employee_ID')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('part_ID')->references('id')->on('part')->onDelete('cascade');
+            $table->foreign('part_ID')->references('id')->on('parts')->onDelete('cascade');
 
         });
     }

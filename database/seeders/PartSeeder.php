@@ -15,7 +15,7 @@ class PartSeeder extends Seeder
     public function run(): void
     {
         //
-        DB::table('part')->insert([
+        DB::table('parts')->insert([
             'name' => Str::random(10),
             'description' => Str::random(10),
             'PricePerKg' => 4,

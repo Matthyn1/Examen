@@ -50,8 +50,8 @@
 {{--    With @can we are defining what roles can see what buttons/functions--}}
     @canany(['admin', 'appbeheer'])
     <x-sidebar.link             title="Onderhoud"
-                                href="{{ route('onderdelen') }}"
-                                :active="request()->routeIs('onderdelen')"  />
+                                href="{{ route('parts.index') }}"
+                                :active="request()->routeIs('parts.index')"  />
     @endcan
 @canany(['inname', 'appbeheer'])
     <x-sidebar.link             title="Inname"

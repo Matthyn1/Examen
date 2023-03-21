@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         //create table for the parts of the devices
-        Schema::create('part', function (Blueprint $table) {
+        Schema::create('parts', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
             $table->string('description')->nullable();
