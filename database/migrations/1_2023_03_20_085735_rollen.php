@@ -15,7 +15,7 @@ return new class extends Migration
             //Create table for the user roles
             $table->id();
             $table->string('name')->unique();
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->bigInteger('value');
         });
     }

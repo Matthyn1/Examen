@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('employee_ID');
             $table->unsignedBigInteger('part_ID');
             $table->datetime('Time');
-            $table->float('PricePerKg');
+            $table->float('PricePerKg')->nullable();
             $table->float('StashKg');
 
             $table->foreign('employee_ID')->references('id')->on('users')->onDelete('cascade');

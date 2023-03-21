@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('part', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->float('PricePerKg');
             $table->float('StashKg');
     });

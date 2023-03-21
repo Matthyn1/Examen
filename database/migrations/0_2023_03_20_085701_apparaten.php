@@ -15,9 +15,9 @@ return new class extends Migration
         Schema::create('device', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->float('compensation');
-            $table->integer('WeightInGram');
+            $table->integer('WeightInGram')->nullable();
         });
     }
 
