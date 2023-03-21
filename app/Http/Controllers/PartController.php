@@ -33,7 +33,6 @@ class PartController extends Controller
         ]);
 
         $part = Parts::findOrFail($id);
-
         $part->name = $validatedData['name'];
         $part->description = $validatedData['description'];
         $part->PricePerKg = $validatedData['PricePerKg'];

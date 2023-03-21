@@ -4,61 +4,73 @@ namespace App\Http\Controllers;
 
 use App\Models\Issues;
 use App\Models\User;
+use App\Models\Parts;
 use Illuminate\Http\Request;
 
 class IssueController extends Controller
 {
-    //stores all parts in variable $parts
     public function index()
     {
-        $parts = Issues::all();
-
-        return view('components.functions.onderdelen', compact('parts'));
+        $parts = Parts::all();
+        $employeeID = auth()->user()->id;
+        $issues = Issues::all();
+        return view('components.functions.uitgiftes', compact('parts', 'employeeID','issues'));
     }
 
-    public function destroy($id)
+    public function store(Request $request)
     {
-        $part = Issues::findOrFail($id);
-        $part->delete();
+        // validate the form data
+        $validatedData = $request->validate([
+            'user_id' => 'required',
+            'parts_id' => 'required',
+            'datetime' => 'required',
+            'Weight' => 'required|numeric',
+            'Price' => 'required|numeric',
+        ]);
 
-        return redirect()->route('parts.index')->with('success', 'Part deleted successfully.');
+        // create a new issue
+        $datetime = strtotime($request->input('datetime'));
+        $issue = new Issues;
+        $issue->employee_id = $request->input('user_id');
+        $issue->part_id = $request->input('parts_id');
+        $issue->time = date('Y-m-d H:i:s', $datetime);
+        $issue->weightKg = $validatedData['Weight'];
+        $issue->price = $validatedData['Price'];
+        $issue->save();
+
+        return redirect()->back()->with('success', 'Issue submitted successfully.');
     }
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'name' => 'required|max:255',
-            'description' => '',
-            'PricePerKg' => 'required|numeric|min:0',
-            'StashKg' => 'required|numeric|min:0',
+            'user_id' => 'required',
+            'parts_id' => 'required',
+            'datetime' => 'required',
+            'Weight' => 'required|numeric',
+            'Price' => 'required|numeric',
         ]);
 
-        $part = Issues::findOrFail($id);
+        $issue = issues::findOrFail($id);
 
-        $part->Time = $validatedData['Time'];
-        $part->PricePerKg = $validatedData['PricePerKg'];
-        $part->StashKg = $validatedData['StashKg'];
+        $datetime = strtotime($request->input('datetime'));
 
-        $part->save();
+        $issue->employee_id = $request->input('user_id');
+        $issue->part_id = $request->input('parts_id');
+        $issue->time = date('Y-m-d H:i:s', $datetime);
+        $issue->weightKg = $validatedData['Weight'];
+        $issue->price = $validatedData['Price'];
+
+        $issue->save();
 
 
-        return redirect()->route('parts.index');
+        return redirect()->route('issues.index');
 
     }
-    public function store(Request $request)
+    public function destroy($id)
     {
-        $validatedData = $request->validate([
-            'name' => 'required',
-            'description' => '',
-            'PricePerKg' => 'required|numeric',
-            'StashKg' => 'required|numeric'
-        ]);
+        $issues = Issues::findOrFail($id);
+        $issues->delete();
 
-        $part = new Issues();
-        $part->Time = $validatedData['Time'];
-        $part->PricePerKg = $validatedData['PricePerKg'];
-        $part->StashKg = $validatedData['StashKg'];
-        $part->save();
-
-        return redirect()->route('parts.index')->with('success', 'Part created successfully');
+        return redirect()->route('issues.index')->with('success', 'Part deleted successfully.');
     }
 }

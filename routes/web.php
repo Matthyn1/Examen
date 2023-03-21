@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PartController;
-
+use App\Http\Controllers\IssueController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,10 +41,10 @@ require __DIR__ . '/auth.php';
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
 
-    Route::get('/issues', [PartController::class, 'index'])->name('issues.index');
-    Route::put('/issues/{id}', [PartController::class, 'update'])->name('issues.update');
-    Route::delete('/issues/{id}', [PartController::class, 'destroy'])->name('issues.destroy');
-    Route::post('/issues', [PartController::class, 'store'])->name('issues.store');
+    Route::get('/issues', [IssueController::class, 'index'])->name('issues.index');
+    Route::put('/issues/{id}', [IssueController::class, 'update'])->name('issues.update');
+    Route::delete('/issues/{id}', [IssueController::class, 'destroy'])->name('issues.destroy');
+    Route::post('/issues', [IssueController::class, 'store'])->name('issues.store');
 
     Route::get('/parts', [PartController::class, 'index'])->name('parts.index');
     Route::put('/parts/{id}', [PartController::class, 'update'])->name('parts.update');
