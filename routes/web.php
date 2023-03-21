@@ -40,7 +40,11 @@ require __DIR__ . '/auth.php';
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
-    Route::get('/uitgiftes', function () {return view('components.functions.uitgiftes');})->name('uitgiftes');
+
+    Route::get('/issues', [PartController::class, 'index'])->name('issues.index');
+    Route::put('/issues/{id}', [PartController::class, 'update'])->name('issues.update');
+    Route::delete('/issues/{id}', [PartController::class, 'destroy'])->name('issues.destroy');
+    Route::post('/issues', [PartController::class, 'store'])->name('issues.store');
 
     Route::get('/parts', [PartController::class, 'index'])->name('parts.index');
     Route::put('/parts/{id}', [PartController::class, 'update'])->name('parts.update');

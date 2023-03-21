@@ -66,8 +66,8 @@
 
         @canany(['uitgifte', 'appbeheer'])
     <x-sidebar.link             title="Uitgifte"
-                                href="{{ route('uitgiftes') }}"
-                                :active="request()->routeIs('uitgiftes')"  />
+                                href="{{ route('issues.index') }}"
+                                :active="request()->routeIs('Issues.index')"  />
         @endcan
 
             @cannot('admin')

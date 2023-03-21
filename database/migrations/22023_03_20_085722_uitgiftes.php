@@ -18,8 +18,8 @@ return new class extends Migration
             $table->unsignedBigInteger('employee_ID');
             $table->unsignedBigInteger('part_ID');
             $table->datetime('Time');
-            $table->float('PricePerKg')->nullable();
-            $table->float('StashKg');
+            $table->float('WeightKg');
+            $table->float('Price')->nullable();
 
             $table->foreign('employee_ID')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('part_ID')->references('id')->on('parts')->onDelete('cascade');
