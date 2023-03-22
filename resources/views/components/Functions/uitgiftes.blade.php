@@ -12,7 +12,7 @@
                 <th>Onderdeel</th>
                 <th>Datum</th>
                 <th>Gewicht</th>
-                <th>Prijs</th>
+                <th>Prijs in €</th>
                 <th>Actie</th>
             </tr>
             </thead>
@@ -34,8 +34,8 @@
                                 @endforeach
                             </select></td>
                         <td><input type="text" name="Datum" value="{{ $issue->Time }}"></td>
-                        <td><input type="text" name="PricePerKg" value="{{ $issue->WeightKg }} Kg"></td>
-                        <td><input type="text" name="StashKg" value="€ {{ $issue->Price }}"></td>
+                        <td><input type="text" name="PricePerKg" value="{{ $issue->WeightKg }}"></td>
+                        <td><input type="text" name="StashKg" value="{{ $issue->Price }}"></td>
                         <td>
                             <button type="submit">Bijwerken</button>
                         </td>

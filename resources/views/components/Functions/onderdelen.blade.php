@@ -14,8 +14,8 @@
         <tr>
             <th>Naam</th>
             <th>Beschrijving</th>
-            <th>Prijs per kg</th>
-            <th>Opslag kg</th>
+            <th>Prijs per Kg €</th>
+            <th>Opslag in Kg</th>
             <th>Actie</th>
         </tr>
         </thead>
@@ -27,8 +27,8 @@
                     @method('PUT')
                     <td><input type="text" name="name" value="{{ $part->name }}"></td>
                     <td><input type="text" name="description" value="{{ $part->description }}"></td>
-                    <td><input type="text" name="PricePerKg" value="€ {{ $part->PricePerKg }}"></td>
-                    <td><input type="text" name="StashKg" value="{{ $part->StashKg }} Kg"></td>
+                    <td><input type="text" name="PricePerKg" value="{{ $part->PricePerKg }}"></td>
+                    <td><input type="text" name="StashKg" value="{{ $part->StashKg }}"></td>
                     <td>
                         <button type="submit">Bewerken</button>
                     </td>
