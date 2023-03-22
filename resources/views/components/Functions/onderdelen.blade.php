@@ -33,7 +33,7 @@
                         <button type="submit" >Bewerken</button>
                     </td>
                     <td class="bg-yellow-400 rounded-3xl">
-                        <a href="{{ route('parts.index') }}">Annuleren</a>
+                        <a href="{{ route('parts.index') }}">Terugzetten</a>
                     </td>
                 </form>
                 <form action="{{ route('parts.destroy', $part->id) }}" method="POST" onsubmit="return showConfirmationDelete();">
@@ -56,7 +56,7 @@
                     <button id="toevoegen" >Toevoegen</button>
                 </td>
                 <td class="bg-yellow-400 rounded-3xl">
-                     <a href="{{ route('parts.store') }}" > Annuleren <a>
+                     <a href="{{ route('parts.store') }}" > Terugzetten <a>
                 </td>
             </form>
             @if (session('success'))
