@@ -8,6 +8,6 @@
     </x-slot>
 
     <div class="p-6 overflow-hidden bg-white rounded-md shadow-md dark:bg-dark-eval-1">
-        {{ __("You're logged in!")  }}
+        {{ __("Welkom bij het ReMaS Systeem, ")}} {{$user->name}}
     </div>
 </x-app-layout>

@@ -61,7 +61,7 @@
     </table>
 
         <label for="afdrukken">Afdrukken:</label>
-    <a href="{{ url('parts/export') }}">Exporteren naar Excel</a>
+    <a href="{{ url('parts/export') }}">Printen</a>
 
     </div>
 </x-app-layout>
