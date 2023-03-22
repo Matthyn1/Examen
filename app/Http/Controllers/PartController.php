@@ -62,7 +62,7 @@ class PartController extends Controller
         $part->StashKg = $validatedData['StashKg'];
         $part->save();
 
-        return redirect()->route('parts.index')->with('success', 'Part created successfully');
+        return redirect()->route('parts.index')->with('success', 'Onderdeel succesvol toegevoegd');
     }
 
     public function export()

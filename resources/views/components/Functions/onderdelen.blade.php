@@ -22,23 +22,23 @@
         <tbody>
         @foreach ($parts as $part)
             <tr>
-                <form method="POST" action="/parts/{{ $part->id }}">
+                <form id="Onderdelen_bewerken_verwijderen" method="POST" action="/parts/{{ $part->id }}" onsubmit="return showConfirmationEdit();">
                     @csrf
                     @method('PUT')
                     <td><input type="text" name="name" value="{{ $part->name }}"></td>
                     <td><input type="text" name="description" value="{{ $part->description }}"></td>
                     <td><input type="text" name="PricePerKg" value="{{ $part->PricePerKg }}"></td>
                     <td><input type="text" name="StashKg" value="{{ $part->StashKg }}"></td>
-                    <td>
-                        <button type="submit">Bewerken</button>
+                    <td class="bg-green-400 rounded-3xl">
+                        <button type="submit" >Bewerken</button>
                     </td>
-                    <td>
+                    <td class="bg-yellow-400 rounded-3xl">
                         <a href="{{ route('parts.index') }}">Annuleren</a>
                     </td>
                 </form>
-                <form action="{{ route('parts.destroy', $part->id) }}" method="POST">
+                <form action="{{ route('parts.destroy', $part->id) }}" method="POST" onsubmit="return showConfirmationDelete();">
                     @csrf
-                    <td>
+                    <td class="bg-red-400 rounded-3xl">
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Verwijderen</button>
                     <td>
@@ -46,22 +46,42 @@
 
         @endforeach
         <tr>
-            <form action="{{ route('parts.store') }}" method="POST">
+            <form id="Onderdelen_toevoegen" action="{{ route('parts.store') }}" method="POST" onsubmit="return showConfirmation();">
                 @csrf
                 <td><input type="text" name="name" class="form-control" placeholder="Naam"></td>
                 <td><input type="text" name="description" class="form-control" placeholder="Omschrijving"></td>
                 <td><input type="number" name="PricePerKg" class="form-control" placeholder="Prijs per kilo"></td>
                 <td><input type="number" name="StashKg" class="form-control" placeholder="Opslag in kilo"> </td>
-                <td>
-                    <button type="submit">Toevoegen</button>
-                    <a href="{{ route('parts.store') }}">Annuleren</a>
+                <td class="bg-green-400 rounded-3xl">
+                    <button id="toevoegen" >Toevoegen</button>
+                </td>
+                <td class="bg-yellow-400 rounded-3xl">
+                     <a href="{{ route('parts.store') }}" > Annuleren <a>
                 </td>
             </form>
+            @if (session('success'))
+                <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
         </tbody>
     </table>
+
+
 
         <label for="afdrukken">Afdrukken:</label>
     <a href="{{ url('parts/export') }}">Printen</a>
 
-    </div>
+
+    <script>
+        function showConfirmation() {
+            return confirm('Weet je zeker dat je alles hebt ingevuld?');
+        }
+
+        function showConfirmationEdit() {
+            return confirm('Weet je zeker dat je de juiste gegevens hebt Gewijzigd?');
+        }
+        function showConfirmationDelete() {
+            return confirm('Weet je zeker dat je de juiste kolom hebt geselecteerd en wilt verwijderen?');
+        }
+    </script>
 </x-app-layout>
+
