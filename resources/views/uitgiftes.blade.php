@@ -65,9 +65,9 @@
                             <option value="{{ $parts->id }}">{{ $parts->name }}</option>
                         @endforeach
                     </select></td>
-                    <td><input type="datetime-local" name="datetime" value="{{ $currentDateTimeFormatted }}" {{--                    [[420]]--}}></td>
+                    <td><input type="datetime-local" name="datetime"></td>
                     <td><input type="number" name="Weight" class="form-control" placeholder="Gewicht"></td>
-                    <td><input type="number" name="Price" step="0.01"{{-- [[420]]--}} class="form-control" placeholder="Prijs"> </td>
+                    <td><input type="number" name="Price" class="form-control" placeholder="Prijs"> </td>
                     <td>
                         <button type="submit">Toevoegen</button>
                     </td>

@@ -52,7 +52,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/parts', [PartController::class, 'store'])->name('parts.store');
     Route::get('parts/export', [PartController::class, 'export']);
 
-    Route::get('/rapportage', function () {return view('components.functions.rapportage');})->name('rapportage');
+    Route::get('/rapportage', function () {return view('buttons.text-icon');})->name('buttons.text-icon');
 });
 
 //Routes voor als persoon Admin is

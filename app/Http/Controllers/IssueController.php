@@ -14,8 +14,15 @@ class IssueController extends Controller
         $parts = Parts::all();
         $employeeID = auth()->user()->id;
         $issues = Issues::all();
-        return view('components.functions.uitgiftes', compact('parts', 'employeeID','issues'));
+        //[[420]] begin
+        $currentDateTime = now();
+        if (date('I', $currentDateTime->timestamp)) {
+            $currentDateTime->addHour(1);
+        }
+        $currentDateTimeFormatted = $currentDateTime->format('Y-m-d\TH:i');
+        return view('components.functions.uitgiftes', compact('parts', 'employeeID','issues', 'currentDateTimeFormatted')); //[[420]]
     }
+    //[[420]] End
 
     public function store(Request $request)
     {
@@ -25,7 +32,7 @@ class IssueController extends Controller
             'parts_id' => 'required',
             'datetime' => 'required',
             'Weight' => 'required|numeric',
-            'Price' => 'required|numeric',
+            'Price' => 'required|numeric|regex:/^\d+(\.\d{1,2})?$/', //[[420]]
         ]);
 
         // create a new issue
@@ -35,7 +42,7 @@ class IssueController extends Controller
         $issue->part_id = $request->input('parts_id');
         $issue->time = date('Y-m-d H:i:s', $datetime);
         $issue->weightKg = $validatedData['Weight'];
-        $issue->price = $validatedData['Price'];
+        $issue->price =  floatval($validatedData['Price']); //[[420]]
         $issue->save();
 
         return redirect()->back()->with('success', 'Issue submitted successfully.');

@@ -9,10 +9,6 @@
     <div>
         <p>Dit zijn de onderdelen</p>
     </div>
-{{--    [[420]]--}}
-    @error('name')
-    <div class="alert alert-danger mt-2 bg-red-500">{{ $message }}</div>
-    @enderror
     <table>
         <thead>
         <tr>

@@ -23,7 +23,7 @@ class PartController extends Controller
         $part = Parts::findOrFail($id);
         $part->delete();
 
-        return redirect()->route('parts.index')->with('success', 'Part deleted successfully.');
+        return redirect()->route('parts.index')->with('success', 'Onderdeel succesvol verwijderd.');
     }
     public function update(Request $request, $id)
     {
@@ -33,27 +33,37 @@ class PartController extends Controller
             'PricePerKg' => 'required|numeric|min:0',
             'StashKg' => 'required|numeric|min:0',
         ]);
+        //[[69]] begin
+        if (Parts::where('name', $validatedData['name'])->exists()) {
+            return redirect()->back()->withErrors(['name' => 'Dit onderdeel bestaat al!']);
+        }
+        else {
+            //[[69]] end
+            $part = Parts::findOrFail($id);
+            $part->name = $validatedData['name'];
+            $part->description = $validatedData['description'];
+            $part->PricePerKg = $validatedData['PricePerKg'];
+            $part->StashKg = $validatedData['StashKg'];
 
-        $part = Parts::findOrFail($id);
-        $part->name = $validatedData['name'];
-        $part->description = $validatedData['description'];
-        $part->PricePerKg = $validatedData['PricePerKg'];
-        $part->StashKg = $validatedData['StashKg'];
+            $part->save();
 
-        $part->save();
-
-
+        }
         return redirect()->route('parts.index');
 
     }
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required',
+            'name' => 'required|unique:parts', //[[69]]
             'description' => '',
             'PricePerKg' => 'required|numeric',
             'StashKg' => 'required|numeric'
         ]);
+        //[[69]] begin
+        if (Parts::where('name', $validatedData['name'])->exists()) {
+            return redirect()->back()->withErrors(['name' => 'Dit onderdeel bestaat al!']);
+        }
+        else{//[[69]] end
 
         $part = new Parts();
         $part->name = $validatedData['name'];
@@ -61,8 +71,13 @@ class PartController extends Controller
         $part->PricePerKg = $validatedData['PricePerKg'];
         $part->StashKg = $validatedData['StashKg'];
         $part->save();
+        }
 
-        return redirect()->route('parts.index')->with('success', 'Onderdeel succesvol toegevoegd');
+
+            return redirect()->route('parts.index')->with('success', 'Onderdeel succesvol toegevoegd');
+
+
+
     }
 
     public function export()
