@@ -13,7 +13,7 @@
     <div class="flex items-center gap-3">
 
         <div class="absolute left-2">ReMaS Superior Waste Recycling</div>
-        <div>Version 1.0</div>
+        <div>Version 1.01</div>
         <div>Ingelogd als:</div>
         <x-dropdown align="right" width="48">
             <x-slot name="trigger">
